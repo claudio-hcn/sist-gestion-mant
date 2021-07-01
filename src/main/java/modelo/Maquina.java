@@ -14,6 +14,7 @@ public class Maquina {
     private String nombreMaquina;
     private String ubicacion;
     private String codigo;
+    private String centroCosto;
 
 
     
@@ -49,6 +50,14 @@ public class Maquina {
 
     public void setCodigo(String tipo) {
         this.codigo = tipo;
+    }
+
+    public String getCentroCosto() {
+        return centroCosto;
+    }
+
+    public void setCentroCosto(String centroCosto) {
+        this.centroCosto = centroCosto;
     }
 
 

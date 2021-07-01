@@ -27,8 +27,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
         panel = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
         btnCerrarSesion = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmTareas = new javax.swing.JMenu();
         jmCrearTarea = new javax.swing.JMenuItem();
@@ -39,27 +42,48 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jmMaquinas = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jmCrearSolicitud = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
+        jmVerSolicitudes = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmCategorias = new javax.swing.JMenuItem();
         jmTrabajadores = new javax.swing.JMenuItem();
         jmCerrarSesion = new javax.swing.JMenuItem();
 
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
+
+        jLabel2.setText("ELIJA UNA DE LAS OPCIONES DEL MENÚ PARA INICIAR");
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
         panel.setLayout(panelLayout);
         panelLayout.setHorizontalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelLayout.setVerticalGroup(
             panelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 358, Short.MAX_VALUE)
+            .addGroup(panelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(333, Short.MAX_VALUE))
         );
 
         btnCerrarSesion.setText("Cerrar Sesiòn");
+
+        jLabel1.setText("jLabel1");
 
         jmTareas.setText("Tareas");
 
@@ -96,16 +120,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         jMenu1.setText("Solicitudes");
 
-        jmCrearSolicitud.setText("Solicitudes");
+        jmCrearSolicitud.setText("Crear y Programar Solicitudes");
         jMenu1.add(jmCrearSolicitud);
 
-        jMenuItem9.setText("Administrar Solicitudes");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        jmVerSolicitudes.setText("Ver Todas");
+        jmVerSolicitudes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                jmVerSolicitudesActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem9);
+        jMenu1.add(jmVerSolicitudes);
 
         jMenuBar1.add(jMenu1);
 
@@ -139,7 +163,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(468, Short.MAX_VALUE)
+                .addContainerGap(416, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
                 .addComponent(btnCerrarSesion)
                 .addContainerGap())
             .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,16 +175,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCerrarSesion)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCerrarSesion)
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void jmVerSolicitudesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmVerSolicitudesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_jmVerSolicitudesActionPerformed
 
     private void jmTareasPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmTareasPendientesActionPerformed
         // TODO add your handling code here:
@@ -214,10 +242,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton btnCerrarSesion;
+    public javax.swing.JDialog jDialog1;
+    public javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     public javax.swing.JMenu jMenu1;
     public javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    public javax.swing.JMenuItem jMenuItem9;
     public javax.swing.JMenuItem jmCategorias;
     public javax.swing.JMenuItem jmCerrarSesion;
     public javax.swing.JMenuItem jmCrearSolicitud;
@@ -229,6 +259,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     public javax.swing.JMenu jmTareas;
     public javax.swing.JMenuItem jmTareasPendientes;
     public javax.swing.JMenuItem jmTrabajadores;
+    public javax.swing.JMenuItem jmVerSolicitudes;
     public javax.swing.JPanel panel;
     // End of variables declaration//GEN-END:variables
 }

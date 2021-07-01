@@ -19,7 +19,7 @@ public class DAOMaquina implements CRUD {
     @Override
     public boolean Agregar(Object obj) {
         maq = (Maquina) obj;
-        String sql = "INSERT INTO maquinas (nombre, ubicacion, codigo) VALUES(?,?,?)";
+        String sql = "INSERT INTO maquinas (nombre, ubicacion, codigo, centro_costo) VALUES(?,?,?,?)";
         PreparedStatement pst;
 
         try {
@@ -28,6 +28,7 @@ public class DAOMaquina implements CRUD {
             pst.setString(1, maq.getNombreMaquina());
             pst.setString(2, maq.getUbicacion());
             pst.setString(3, maq.getCodigo());
+            pst.setString(4, maq.getCentroCosto());
             int filas = pst.executeUpdate();
             if (filas > 0) {
 
@@ -49,7 +50,7 @@ public class DAOMaquina implements CRUD {
     @Override
     public boolean Modificar(Object obj) {
         maq = (Maquina) obj;
-        String sql = "UPDATE  maquinas SET nombre= ?,ubicacion = ?,codigo = ? WHERE id_maquina = ?";
+        String sql = "UPDATE  maquinas SET nombre= ?,ubicacion = ?,codigo = ?,centro_costo=? WHERE id_maquina = ?";
         Connection con;
         PreparedStatement pst;
         try {
@@ -58,7 +59,8 @@ public class DAOMaquina implements CRUD {
             pst.setString(1, maq.getNombreMaquina());
             pst.setString(2, maq.getUbicacion());
             pst.setString(3, maq.getCodigo());
-            pst.setInt(4, maq.getIdMaquina());
+            pst.setInt(5, maq.getIdMaquina());
+            pst.setString(4, maq.getCentroCosto());
             int filas = pst.executeUpdate();
             if (filas > 0) {
                 con.close();

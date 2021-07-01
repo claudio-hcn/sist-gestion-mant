@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -45,10 +47,29 @@ public class DAOUsuario implements Operacion {
             }
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Ocurrio un errror" + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Ocurrió un error" + e.getMessage());
 
         }
         return usuarioValido;
 
+    }
+    public String traerNombre(String usuario) throws SQLException{
+        String nombre="";
+        con = (Connection) conx.conectar();
+        Statement st  = con.createStatement();
+        ResultSet rs = st.executeQuery("select concat(nombre,' ',apellido_paterno) from trabajadores where id_trabajador=(select fk_trabajadores from usuarios where usuario='"+usuario+"')");
+                 //"concat(nombre,' ',apellido_paterno) as nombre from trabajadores where id_trabajador=(select fk_trabajador from usuarios where usuario=?)");
+          try {
+            while (rs.next()) {
+                nombre=rs.getString(1);
+               
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ocurrio un errror" + ex.getMessage());
+        }
+        System.out.println(nombre);
+        return nombre;
+        
     }
 }

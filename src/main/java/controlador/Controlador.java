@@ -2,6 +2,9 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.DAOUsuario;
 import modelo.Usuario;
@@ -39,12 +42,18 @@ public class Controlador implements ActionListener {
         if (viewLog.btnIngresar == ae.getSource()) {
             modelUsu.setUsuario(viewLog.txtUsuario.getText());
             modelUsu.setClave(viewLog.txtClave.getText());
+            System.out.println(modelUsu.getUsuario());
 
             if (modelDAOUsu.validarUsuario(modelUsu)) {
                 JOptionPane.showMessageDialog(null, "Validacion de usuario exitosa");
                 viewLog.setVisible(false);
-                VistaPrincipal vistaP=new VistaPrincipal();
-                ControladorPrincipal ctrlP=new ControladorPrincipal(vistaP);
+                VistaPrincipal vistaP = new VistaPrincipal();
+                try {
+                    modelUsu.setNombre(modelDAOUsu.traerNombre(modelUsu.getUsuario()));
+                } catch (SQLException ex) {
+                    Logger.getLogger(Controlador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                ControladorPrincipal ctrlP = new ControladorPrincipal(vistaP, modelUsu);
                 ctrlP.iniciarPantallaPrincipal();
 
             } else {

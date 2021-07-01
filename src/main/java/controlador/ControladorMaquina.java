@@ -18,7 +18,7 @@ public class ControladorMaquina implements ActionListener, MouseListener {
     private DAOMaquina daom;
     private Maquina maquina;
 
-    String[] columnas = {"ID", "NOMBRE", "UBICACION", "CODIGO"};
+    String[] columnas = {"ID", "NOMBRE", "UBICACION", "CODIGO","CENTRO DE COSTO"};
     ArrayList<Object[]> datos = new ArrayList<>();
     DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
         @Override
@@ -34,6 +34,7 @@ public class ControladorMaquina implements ActionListener, MouseListener {
         vista.btnGuardar.addActionListener(this);
         vista.btnEliminar.addActionListener(this);
         vista.btnModificar.addActionListener(this);
+        vista.btnLimpiar.addActionListener(this);
 
     }
 
@@ -65,6 +66,7 @@ public class ControladorMaquina implements ActionListener, MouseListener {
         vista.txtUbicacion.setText("");
         vista.txtCodigo.setText("");
         vista.txtID.setText("");
+        vista.txtCentroCosto.setText("");
     }
 
     @Override
@@ -75,6 +77,7 @@ public class ControladorMaquina implements ActionListener, MouseListener {
             maquina.setNombreMaquina(vista.txtNombre.getText());
             maquina.setUbicacion(vista.txtUbicacion.getText());
             maquina.setCodigo(vista.txtCodigo.getText());
+            maquina.setCentroCosto(vista.txtCentroCosto.getText());
             System.out.println("wena");
             if (daom.Agregar(maquina)) {
                 JOptionPane.showMessageDialog(null, "Guardado");
@@ -86,6 +89,14 @@ public class ControladorMaquina implements ActionListener, MouseListener {
         }
         }
         if (e.getSource() == vista.btnEliminar) {
+            String[] botones = {"Si", "No"};
+            int resp = JOptionPane.showOptionDialog(null,
+                    "Seguro Desea Eliminar El Registro?",
+                    "Sistema de Mantenimiento",
+                    JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null,
+                    botones, botones[0]);
+            if(resp==0){
             maquina.setIdMaquina(Integer.parseInt(vista.txtID.getText()));
               if(daom.Eliminar(maquina))
               {JOptionPane.showMessageDialog(null, "Registro Eliminado");
@@ -95,12 +106,16 @@ public class ControladorMaquina implements ActionListener, MouseListener {
                 JOptionPane.showMessageDialog(null, "Error al Eliminar");
                 limpiar();
             }
+        }else{
+                JOptionPane.showMessageDialog(null, "Accion Cancelada");
+            }
         }
          if (e.getSource() == vista.btnModificar) {
             maquina.setIdMaquina(Integer.parseInt(vista.txtID.getText()));
             maquina.setNombreMaquina(vista.txtNombre.getText());
             maquina.setUbicacion(vista.txtUbicacion.getText());
             maquina.setCodigo(vista.txtCodigo.getText());
+            maquina.setCentroCosto(vista.txtCentroCosto.getText());
               if(daom.Modificar(maquina))
               {JOptionPane.showMessageDialog(null, "Modificado");
                 cargar();
@@ -109,15 +124,25 @@ public class ControladorMaquina implements ActionListener, MouseListener {
                 JOptionPane.showMessageDialog(null, "Error al Modificar");
                 limpiar();
             }
-        }  
         }
+         if (vista.btnLimpiar==e.getSource()){
+             limpiar();
+         }
+        }
+    
     public boolean comprobarFormulario(){
         boolean validacion=false;
         try{
             if(!vista.txtNombre.getText().isEmpty()){
                 if(!vista.txtUbicacion.getText().isEmpty()){
                     if(!vista.txtCodigo.getText().isEmpty()){
-                       validacion=true;
+                        if(!vista.txtCentroCosto.getText().isEmpty()){
+                          validacion=true;  
+                        }else{
+                        JOptionPane.showMessageDialog(null, "por favor ingrese el Centro de costo", "mensaje de error", JOptionPane.ERROR_MESSAGE);
+                                                validacion = false;
+                    }
+                       
                     }else{
                         JOptionPane.showMessageDialog(null, "por favor ingrese el código de la máquina", "mensaje de error", JOptionPane.ERROR_MESSAGE);
                                                 validacion = false;
@@ -145,6 +170,7 @@ public class ControladorMaquina implements ActionListener, MouseListener {
         vista.txtNombre.setText(String.valueOf(vista.jTable1.getValueAt(vista.jTable1.getSelectedRow(), 1)));
         vista.txtUbicacion.setText(String.valueOf(vista.jTable1.getValueAt(vista.jTable1.getSelectedRow(), 2)));
         vista.txtCodigo.setText(String.valueOf(vista.jTable1.getValueAt(vista.jTable1.getSelectedRow(), 3)));
+        vista.txtCentroCosto.setText(String.valueOf(vista.jTable1.getValueAt(vista.jTable1.getSelectedRow(), 4)));
         vista.txtID.setText(String.valueOf(vista.jTable1.getValueAt(vista.jTable1.getSelectedRow(), 0)));
     }
 

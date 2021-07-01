@@ -13,6 +13,7 @@ public class Usuario {
     private int idUsuario;
     private String usuario;
     private String clave;
+    private String nombre;
 
     public Usuario() {
     }
@@ -39,6 +40,14 @@ public class Usuario {
 
     public void setClave(String clave) {
         this.clave = clave;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
     

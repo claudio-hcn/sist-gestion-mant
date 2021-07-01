@@ -23,8 +23,9 @@ import vista.*;
 public class ControladorPrincipal implements ActionListener {
 
     private VistaPrincipal viewPrincipal;
+    private Usuario usu;
 
-    public ControladorPrincipal(VistaPrincipal viewPrincipal) {
+    public ControladorPrincipal(VistaPrincipal viewPrincipal, Usuario usu) {
         this.viewPrincipal = viewPrincipal;
         this.viewPrincipal.btnCerrarSesion.addActionListener(this);
         this.viewPrincipal.jmCerrarSesion.addActionListener(this);
@@ -36,6 +37,9 @@ public class ControladorPrincipal implements ActionListener {
         this.viewPrincipal.jmMaq.addActionListener(this);
         this.viewPrincipal.jmCrearSolicitud.addActionListener(this);
         this.viewPrincipal.jmTrabajadores.addActionListener(this);
+        this.viewPrincipal.jmTareas.addActionListener(this);
+        this.viewPrincipal.jmVerSolicitudes.addActionListener(this);
+        this.usu=usu;
     }
 
     public ControladorPrincipal() {
@@ -46,6 +50,8 @@ public class ControladorPrincipal implements ActionListener {
         viewPrincipal.setVisible(true);
         viewPrincipal.setTitle("SISTEMA DE MANTENIMIENTO PLANTA XXX");
         viewPrincipal.setExtendedState(6);
+        viewPrincipal.jLabel1.setText(usu.getNombre());
+        System.out.println(usu.getNombre());
     }
 
     public void despejar(Object obj) {
@@ -59,7 +65,6 @@ public class ControladorPrincipal implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (viewPrincipal.btnCerrarSesion == e.getSource()
                 || viewPrincipal.jmCerrarSesion == e.getSource()) {
-            System.out.println("wena");
             String[] botones = {"Si", "No"};
             int resp = JOptionPane.showOptionDialog(null,
                     "Desea Salir?",
@@ -86,7 +91,7 @@ public class ControladorPrincipal implements ActionListener {
             Solicitud sol = new Solicitud();
             DAOSolicitud daos = new DAOSolicitud();
             despejar(vistaSol);
-            ControladorSolicitud ctrlS = new ControladorSolicitud(vistaSol, daos, sol);
+            ControladorSolicitud ctrlS = new ControladorSolicitud(vistaSol, daos, sol,usu, viewPrincipal);
             try {
                 ctrlS.mostrarFormularioSolicitud();
             } catch (SQLException ex) {
@@ -98,13 +103,33 @@ public class ControladorPrincipal implements ActionListener {
             Trabajador trabajador = new Trabajador();
             DAOTrabajador dao = new DAOTrabajador();
             despejar(vista);
-            ControladorTrabajador ctrlT = new ControladorTrabajador(vista, dao, trabajador);
+            ControladorTrabajador ctrlT = new ControladorTrabajador(vista, dao, trabajador, viewPrincipal);
             try {
                 ctrlT.mostrar();
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
+        }
+        if (viewPrincipal.jmTareasPendientes == e.getSource()) {
+            VistaTarea vista=new VistaTarea();
+            Tarea tarea=new Tarea();
+            DAOTarea dao=new DAOTarea();
+            despejar(vista);
+            ControladorTarea ctrlT=new ControladorTarea(vista, tarea, dao);
+            try {
+                ctrlT.mostrar();
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        if(viewPrincipal.jmVerSolicitudes==e.getSource()){
+            VistaVerSolicitudes vistaVS=new VistaVerSolicitudes();
+            Solicitud solicitud=new Solicitud();
+            DAOSolicitud daoS=new DAOSolicitud();
+            despejar(vistaVS);
+            VerSolicitudes ctrlVS=new VerSolicitudes(vistaVS,daoS,solicitud);
+            ctrlVS.mostrar();
         }
 
     }

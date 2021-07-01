@@ -7,7 +7,6 @@ import javax.swing.UnsupportedLookAndFeelException;
 import modelo.DAOUsuario;
 import modelo.Usuario;
 import vista.FormLogin;
-import vista.VistaPrincipal;
 
 public class Principal {
 
@@ -16,7 +15,6 @@ public class Principal {
         FormLogin log = new FormLogin();
         Usuario usu = new Usuario();
         DAOUsuario dusu = new DAOUsuario();
-        VistaPrincipal viewPrincipal=new VistaPrincipal();
         Controlador ctrl = new Controlador(log, usu, dusu);
         ctrl.iniciarFormLogin();
     }

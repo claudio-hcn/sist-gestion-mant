@@ -119,7 +119,7 @@ public class DAOTrabajador implements CRUD {
 
     @Override
     public ArrayList<Object[]> consultar() {
-        String sql = "SELECT * FROM trabajadores";
+        String sql = "SELECT CONCAT(nombre,' ',apellido_paterno,' ', apellido_materno), rut,telefono,categoria FROM trabajadores";
         Connection con;
         PreparedStatement pst;
         ResultSet rs;
@@ -162,6 +162,29 @@ public class DAOTrabajador implements CRUD {
         }
         return listaModelo;
 } 
+    public String [] ob_trabajador(String lala) throws SQLException{
+        String datos []=new String[8];
+         con = (Connection) conx.conectar();
+        Statement st  = con.createStatement();      
+      ResultSet rs = st.executeQuery("select  * from trabajadores where rut='"+lala+"'");
+          try {
+            while (rs.next()) {
+                datos[0]=(rs.getString(1));
+                datos[1]=(rs.getString(2));
+                datos[2]=(rs.getString(3));
+                datos[3]=(rs.getString(4));
+                datos[4]=(rs.getString(5));
+                datos[5]=(rs.getString(6));
+                datos[6]=(rs.getString(7));
+                datos[7]=(rs.getString(8));
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Ocurrio un error" + ex.getMessage());
+        }
+        
+        return datos;
+    }
 }
 
    
