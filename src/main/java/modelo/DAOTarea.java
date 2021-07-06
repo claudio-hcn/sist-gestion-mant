@@ -72,7 +72,9 @@ public class DAOTarea implements CRUD{
 
     @Override
     public ArrayList<Object[]> consultar() {
-        String sql = "SELECT (select nombre from maquinas where id_maquina=fk_maquina),nombre_tarea, fecha_programada, duracion_estimada,prioridad,tipo_tarea,clasificacion1,activador FROM tareas";
+        String sql = "SELECT (select nombre from maquinas where id_maquina=fk_maquina),nombre_tarea, "
+                + "CONCAT(datediff(CURDATE(),fecha_programada)*IF(CURDATE()>fecha_programada,1,0),' días') as atras,"
+                + "fecha_programada, duracion_estimada,prioridad,tipo_tarea,clasificacion1,activador FROM tareas ORDER BY fecha_programada";
         Connection con;
         PreparedStatement pst;
         ResultSet rs;

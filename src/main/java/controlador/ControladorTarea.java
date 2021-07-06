@@ -19,7 +19,7 @@ public class ControladorTarea implements ActionListener {
     private DAOTarea dao;
     
     
-    String[] columnas = {"MAQUINA", "TAREA","FECHA PROGRAMADA", "TIEMPO ESTIMADO", "PRIORIDAD","TIPO TAREA", "CLASIFICACION 1", "ACTIVADOR"};
+    String[] columnas = {"MAQUINA", "TAREA","ATRASO","FECHA PROGRAMADA", "TIEMPO ESTIMADO", "PRIORIDAD","TIPO TAREA", "CLASIFICACION 1", "ACTIVADOR"};
     ArrayList<Object[]> datos = new ArrayList<>();
     DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
         @Override
