@@ -9,12 +9,12 @@ package vista;
  *
  * @author Claudio
  */
-public class VistaTarea extends javax.swing.JPanel {
+public class VistaTareasPendientes extends javax.swing.JPanel {
 
     /**
      * Creates new form VistaTarea
      */
-    public VistaTarea() {
+    public VistaTareasPendientes(){
         initComponents();
     }
 

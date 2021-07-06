@@ -112,11 +112,11 @@ public class ControladorPrincipal implements ActionListener {
 
         }
         if (viewPrincipal.jmTareasPendientes == e.getSource()) {
-            VistaTarea vista=new VistaTarea();
+            VistaTareasPendientes vista=new VistaTareasPendientes();
             Tarea tarea=new Tarea();
             DAOTarea dao=new DAOTarea();
             despejar(vista);
-            ControladorTarea ctrlT=new ControladorTarea(vista, tarea, dao);
+            ControladorTareasPendientes ctrlT=new ControladorTareasPendientes(vista, tarea, dao);
             try {
                 ctrlT.mostrar();
             } catch (SQLException ex) {
@@ -131,6 +131,17 @@ public class ControladorPrincipal implements ActionListener {
             VerSolicitudes ctrlVS=new VerSolicitudes(vistaVS,daoS,solicitud);
             ctrlVS.mostrar();
         }
-
+        if(viewPrincipal.jmPlanes==e.getSource()){
+            VistaTareasMaquinas vistaTM=new VistaTareasMaquinas();
+            DAOTarea daoT=new DAOTarea();
+            Tarea tarea=new Tarea();
+            despejar(vistaTM);
+            ControladorTareasMaquinas controladorTM=new ControladorTareasMaquinas(tarea, daoT, vistaTM);
+            try {
+                controladorTM.mostrar();
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

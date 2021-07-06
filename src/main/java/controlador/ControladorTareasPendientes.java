@@ -10,11 +10,11 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellRenderer;
 import modelo.DAOTarea;
 import modelo.Tarea;
-import vista.VistaTarea;
+import vista.VistaTareasPendientes;
 
 
-public class ControladorTarea implements ActionListener {
-    private VistaTarea vista;
+public class ControladorTareasPendientes implements ActionListener {
+    private VistaTareasPendientes vista;
     private Tarea tarea;
     private DAOTarea dao;
     
@@ -28,7 +28,7 @@ public class ControladorTarea implements ActionListener {
         }
     };
 
-    public ControladorTarea(VistaTarea vista, Tarea tarea, DAOTarea dao) {
+    public ControladorTareasPendientes(VistaTareasPendientes vista, Tarea tarea, DAOTarea dao) {
         this.vista = vista;
         this.tarea = tarea;
         this.dao = dao;
