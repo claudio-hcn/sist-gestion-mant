@@ -23,6 +23,7 @@ public class Tarea {
     private String clasificacion2;
     private String activador;
     private String fechaProgramada;
+    private String frecuencia;
 
     public Tarea() {
     }
@@ -107,17 +108,26 @@ public class Tarea {
         this.fechaProgramada = fechaProgramada;
     }
 
+    public String getFrecuencia() {
+        return frecuencia;
+    }
+
+    public void setFrecuencia(String frecuencia) {
+        this.frecuencia = frecuencia;
+    }
+
+    @Override
+    public String toString() {
+        return "Tarea{" + "id_tarea=" + id_tarea + ", maquina=" + maquina + ", nombreTarea=" + nombreTarea + ", duracionEstimada=" + duracionEstimada + ", prioridad=" + prioridad + ", tipoTarea=" + tipoTarea + ", clasificacion1=" + clasificacion1 + ", clasificacion2=" + clasificacion2 + ", activador=" + activador + ", fechaProgramada=" + fechaProgramada + ", frecuencia=" + frecuencia + '}';
+    }
+
     
     
 
 
   
 
-    @Override
-    public String toString() {
-        return "Tarea{" + "id_tarea=" + id_tarea + ", maquina=" + maquina + ", nombreTarea=" + nombreTarea + ", duracionEstimada=" + duracionEstimada + ", prioridad=" + prioridad + ", tipoTarea=" + tipoTarea + ", clasificacion1=" + clasificacion1 + ", clasificacion2=" + clasificacion2 + ", activador=" + activador + ", fechaProgramada=" + fechaProgramada + '}';
-    }
-
+   
 
     
     

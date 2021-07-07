@@ -7,6 +7,8 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -20,14 +22,14 @@ import vista.VistaTareasMaquinas;
  *
  * @author Claudio
  */
-public class ControladorTareasMaquinas implements ActionListener{
+public class ControladorTareasMaquinas implements ActionListener, MouseListener{
     private Tarea tarea;
     private DAOTarea dao;
     private VistaTareasMaquinas vista;
     private DialogCrearTarea dialog;
     private VistaPrincipal vistaP;
     
-     String[] columnas = { "TAREA","ATRASO","FECHA PROGRAMADA", "TIEMPO ESTIMADO", "PRIORIDAD","TIPO TAREA", "CLASIFICACION 1", "ACTIVADOR"};
+     String[] columnas = { "TAREA", "TIEMPO ESTIMADO", "PRIORIDAD","TIPO TAREA", "ACTIVADOR","FRECUENCIA"};
     ArrayList<Object[]> datos = new ArrayList<>();
     DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
         @Override
@@ -39,6 +41,7 @@ public class ControladorTareasMaquinas implements ActionListener{
         this.tarea = tarea;
         this.dao = dao;
         this.vista = vista;
+        this.vista.addMouseListener(this);
         this.vista.btnCrear.addActionListener(this);
     }
     public void mostrar() throws SQLException{
@@ -50,7 +53,7 @@ public class ControladorTareasMaquinas implements ActionListener{
     }
      public void cargar() {
         modelo.setRowCount(0);
-        datos = dao.consultarTM();
+        datos = dao.consultarTM(vista.cbMaquina.getSelectedItem().toString());
 
         // for each
         for (Object[] obj : datos) {
@@ -74,6 +77,34 @@ public class ControladorTareasMaquinas implements ActionListener{
             
             
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        cargar();
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        cargar();
+    }
+    
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        cargar();
+    
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        cargar();
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        cargar();
+    
     }
     
 }

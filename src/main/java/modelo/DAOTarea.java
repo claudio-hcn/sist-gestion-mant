@@ -103,10 +103,9 @@ public class DAOTarea implements CRUD{
         }
         return datos;
     }
-    
-    public ArrayList<Object[]> consultarTM() {
-        String sql = "SELECT nombre_tarea, CONCAT(datediff(CURDATE(),fecha_programada)*IF(CURDATE()>fecha_programada,1,0),' días') as atraso,"
-                + "fecha_programada, duracion_estimada,prioridad,tipo_tarea,clasificacion1,activador FROM tareas ORDER BY fecha_programada";
+    // and fk_maquina=(select id_maquina from maquinas where nombre='"+maquina+"')
+    public ArrayList<Object[]> consultarTM(String maquina) {
+        String sql = "SELECT nombre_tarea, duracion_estimada,prioridad,tipo_tarea,activador FROM tareas WHERE activador='Tarea Planificada' and fk_maquina=(select id_maquina from maquinas where nombre='"+maquina+"')";
         Connection con;
         PreparedStatement pst;
         ResultSet rs;
