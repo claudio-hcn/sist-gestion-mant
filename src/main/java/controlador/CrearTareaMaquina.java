@@ -51,6 +51,7 @@ public class CrearTareaMaquina implements ActionListener{
                 JOptionPane.showMessageDialog(null, "Error al Guardar");
             }
         }
+       
     }
     
 }

@@ -30,7 +30,7 @@ public class ControladorTareasMaquinas implements ActionListener, MouseListener{
     private VistaPrincipal vistaP;
     
      String[] columnas = { "TAREA", "TIEMPO ESTIMADO", "PRIORIDAD","TIPO TAREA", "ACTIVADOR","FRECUENCIA"};
-    ArrayList<Object[]> datos = new ArrayList<>();
+    ArrayList<String[]> datos = new ArrayList<>();
     DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -41,8 +41,9 @@ public class ControladorTareasMaquinas implements ActionListener, MouseListener{
         this.tarea = tarea;
         this.dao = dao;
         this.vista = vista;
-        this.vista.addMouseListener(this);
+//        this.vista.addMouseListener(this);
         this.vista.btnCrear.addActionListener(this);
+        this.vista.cbMaquina.addActionListener(this);
     }
     public void mostrar() throws SQLException{
         vista.setVisible(true);
@@ -74,37 +75,36 @@ public class ControladorTareasMaquinas implements ActionListener, MouseListener{
             System.out.println(cosa);
             CrearTareaMaquina crearTM=new CrearTareaMaquina(dialog, dao, tarea,cosa);
             crearTM.mostrar();
-            
-            
         }
+       if(vista.btnEditar==e.getSource()){
+           
+       }
+       if(vista.cbMaquina==e.getSource()){
+           cargar();
+       }
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        cargar();
+        ;
     }
 
     @Override
     public void mousePressed(MouseEvent e) {
-        cargar();
     }
     
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        cargar();
     
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
-        cargar();
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
-        cargar();
-    
     }
     
 }

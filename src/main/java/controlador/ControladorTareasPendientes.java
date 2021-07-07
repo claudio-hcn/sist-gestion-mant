@@ -20,7 +20,7 @@ public class ControladorTareasPendientes implements ActionListener {
     
     
     String[] columnas = {"MAQUINA", "TAREA","ATRASO","FECHA PROGRAMADA", "TIEMPO ESTIMADO", "PRIORIDAD","TIPO TAREA", "CLASIFICACION 1", "ACTIVADOR"};
-    ArrayList<Object[]> datos = new ArrayList<>();
+    ArrayList<String[]> datos = new ArrayList<>();
     DefaultTableModel modelo = new DefaultTableModel(columnas, 0) {
         @Override
         public boolean isCellEditable(int row, int column) {
@@ -42,7 +42,7 @@ public class ControladorTareasPendientes implements ActionListener {
 
     public void cargar() {
         modelo.setRowCount(0);
-        datos = dao.consultar();
+        datos = dao.consultar1();
 
         // for each
         for (Object[] obj : datos) {
